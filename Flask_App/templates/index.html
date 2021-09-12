@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="container">
+    <div class="wrapper">
+
+      <div class="login">
+            <h1>Login</h1>
+
+            <form action="/login" method="POST">
+
+              <input class="form-control" type="text" name="email" placeholder="User Name">
+              <input class="form-control" type="password" name="pass" placeholder="Password">
+              <input class="btn btn-dark" type="submit" value="Login">
+            </form>
+      </div>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="error">
+          {% for message in messages %}
+            <p>{{message|safe}}</p>
+          {% endfor %}
+        </div>
+        {%endif%}
+      {% endwith %}
+
+      <div class="register">
+        <h4>Not a Member...</h4>
+
+        <h1>Register Here:</h1>
+
+        <form action="/create/user" method="POST">
+          <input class="form-control" type="text" name="fname" placeholder="First Name">
+          <input class="form-control" type="text" name="lname" placeholder="Last Name">
+          <input class="form-control" type="email" name="email" placeholder="Email">
+          <input class="form-control" type="password" name="pass1" placeholder="Password">
+          <input class="form-control" type="password" name="pass2" placeholder="Confirm Password">
+          <input class="btn btn-dark" type="submit" value="Register">
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="container">
+    <div class="wrapper">
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="error">
+          {% for message in messages %}
+            <p>{{message|safe}}</p>
+          {% endfor %}
+        </div>
+        {%endif%}
+      {% endwith %}
+
+      <div class="register">
+        <h4>Not a Member...</h4>
+
+        <h1>Register Here:</h1>
+
+        <form action="/create/user" method="POST">
+          <input class="form-control" type="text" name="fname" placeholder="Name">
+          <textarea name="description" id="desc" cols="30" rows="10" placeholder="Description"></textarea>
+          <textarea name="instructions" id="desc" cols="30" rows="10" placeholder="Instructions"></textarea>\
+          <input class="form-control" type="date" name="date">
+          <div id="underThirty">
+            <h4>Under 30 Minutes?</h4>
+            <div>
+            <input type="radio" id="yes" name="thirty" value="Yes">
+              <label for="thirty">Yes</label>
+            </div>
+            <div>
+            <input type="radio" id="no" name="thirty" value="No">
+            <label for="thirty">No</label>
+            </div>
+          </div>
+          <input class="btn btn-dark btn-underline-light" type="submit" value="Register">
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
