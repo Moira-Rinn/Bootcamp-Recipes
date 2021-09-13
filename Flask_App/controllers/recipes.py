@@ -1,13 +1,15 @@
-import re
 from flask import render_template, redirect, request, session, flash
 from Flask_App import app
-from Flask_App.models.user import User
 from Flask_App.models.recipe import Recipe
+
+# ROUTE TO ADD NEW RECIPES PAGE
 
 
 @app.route('/add_new_recipe')
 def add_new_recipe():
     return render_template('add_new_recipe.html')
+
+# ROUTE TO CREATE THE NEW RECIPE
 
 
 @app.route('/add_recipe', methods=['POST'])
@@ -25,6 +27,8 @@ def add_recipe():
     Recipe.save(data)
     return redirect(f'/recipes/{user_id}')
 
+# ROUTE TO EDIT RECIPE PAGE
+
 
 @app.route('/edit_page/<int:recipe_id>')
 def edit_recipe(recipe_id):
@@ -35,10 +39,12 @@ def edit_recipe(recipe_id):
 
     return render_template("edit_recipe.html", recipe=results[0])
 
+# ROUTE TO UPDATE A RECIPE
+
 
 @app.route('/edit_recipe/<int:recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
-    # query = "UPDATE recipes SET name = %(dataname)s, date = %(date)s, thirty = %{thirty}s, description = %description)s, instructions = %(instructions)s, updated_at = NOW() WHERE id = %(id)s;"
+
     data = {
         'id': recipe_id,
         "name": request.form['name'],
@@ -49,8 +55,9 @@ def update_recipe(recipe_id):
     }
     Recipe.edit_recipe(data)
 
-    # return render_template('test.html', id=recipe_id, data=data)
     return redirect(f"/show_recipe/{recipe_id}")
+
+# ROUTE TO VIEW SINGLE RECIPE
 
 
 @app.route('/show_recipe/<int:recipe_id>')
@@ -62,6 +69,8 @@ def view_recipe(recipe_id):
 
     return render_template("view_recipe.html", recipe=results[0])
 
+# ROUTE TO GET ALL RECIPES WITH SPECIFIC USER DEFINED DATE
+
 
 @app.route('/show_this_date/<recipe_date>')
 def recipes_on_this_date(recipe_date):
@@ -71,6 +80,8 @@ def recipes_on_this_date(recipe_date):
     results = Recipe.get_all(query, data)
 
     return render_template("welcome.html", recipes=results)
+
+# ROUTE TO DELETE A RECIPE
 
 
 @app.route('/delete/<int:recipe_id>')

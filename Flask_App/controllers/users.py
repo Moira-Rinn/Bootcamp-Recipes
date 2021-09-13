@@ -1,5 +1,4 @@
-import re
-from flask import render_template, redirect, request, session, flash
+from flask import render_template, redirect, request, session
 from Flask_App import app
 from Flask_App.models.user import User
 from Flask_App.models.login import Login
@@ -7,31 +6,33 @@ from Flask_App.models.recipe import Recipe
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
+# HOME PAGE - LOGIN / REGISTRATION OR USERS COOKBOOK
+
 
 @app.route('/')
 def index():
-    if session.get('user_id') == True:
-        user_id = session['user_id']
-        return redirect(f'/recipes/{user_id}')
-    elif session.get('user_name') == True:
-        uQuery = 'SELECT * FROM users WHERE first_name = %(first_name)s;'
-        uData = {'first_name': session['user_name']}
-        user_in_db = User.get_all(uQuery, uData)
-        user_id = user_in_db[0].id
-        return redirect(f'/recipes/{user_id}')
-    return render_template("index.html")
+    if 'user_id' not in session and 'user_name' not in session:
+        return render_template("index.html")
+
+    user_id = session['user_id']
+    return redirect(f'/recipes/{user_id}')
+
+# ROUTE TO POPULATE USER COOKBOOK WITH USER'S RECIPES
 
 
 @app.route('/recipes/<int:user_id>')
 def get_recpies(user_id):
-    if session == {}:
+    if 'user_id' not in session and 'user_name' not in session:
         return redirect('/')
+    user_id = session['user_id']
 
     lQuery = "SELECT * FROM recipes WHERE user_id = %(user_id)s;"
     lData = {'user_id': user_id}
     user_recipes = Recipe.get_all(lQuery, lData)
 
     return render_template('welcome.html', recipes=user_recipes)
+
+# ROUTE FOR USUER REGISTRATION W/ PASSWORD VALIDATION / HASHING
 
 
 @app.route('/create/user', methods=['POST'])
@@ -61,116 +62,38 @@ def create_user():
 
     return redirect(f'/recipes/{new_user}')
 
-
-@app.route('/logout')
-def loggedout():
-    session.clear()
-    return redirect("/")
+# # ROUTE TO LOGOUT & CLEAR SESSION DATA
 
 
-@app.route('/login', methods=['POST'])
-def login():
+# @app.route('/logout')
+# def loggedout():
+#     session.clear()
+#     return redirect("/")
 
-    uQuery = 'SELECT * FROM users WHERE email = %(email)s;'
-    uData = {'email': request.form['email']}
-    user_in_db = User.get_all(uQuery, uData)
-    if user_in_db == False:
-        flash("Invalid Email/Password")
-        return redirect("/")
-    user_id = user_in_db[0].id
+# ROUTE TO LOGIN W/ VALIDATION, SETS SESSION DATA
 
-    lQuery = "SELECT * FROM logins WHERE user_id = %(user_id)s;"
-    lData = {'user_id': user_id}
-    user_password = Login.get_all(lQuery, lData)
+# @app.route('/login', methods=['POST'])
+# def login():
 
-    if not bcrypt.check_password_hash(user_password[0].pass1, request.form['pass']):
-        flash("Invalid Email/Password")
-        return redirect('/')
-    session.clear()
-    session['user_name'] = user_in_db[0].first_name
-    session['user_id'] = user_in_db[0].id
-    return redirect(f"/recipes/{user_in_db[0].id}")
+#     uQuery = 'SELECT * FROM users WHERE email = %(email)s;'
+#     uData = {'email': request.form['email']}
+#     user_in_db = User.get_all(uQuery, uData)
+#     if user_in_db == False:
+#         flash("Invalid Email/Password")
+#         return redirect("/")
+#     user_id = user_in_db[0].id
 
-# RECIPE ROUTES CUT AND PASTE FROM RECIPE CONTROLLER FOR TEST...
+#     lQuery = "SELECT * FROM logins WHERE user_id = %(user_id)s;"
+#     lData = {'user_id': user_id}
+#     user_password = Login.get_all(lQuery, lData)
 
-
-# @app.route('/add_new_recipe')
-# def add_new_recipe():
-#     return render_template('add_new_recipe.html')
-
-
-# @app.route('/add_recipe', methods=['POST'])
-# def add_recipe():
-#     user_id = session['user_id']
-#     data = {
-#         "name": request.form['name'],
-#         "date": request.form['date'],
-#         "thirty": request.form['thirty'],
-#         "description": request.form['description'],
-#         "instructions": request.form['instructions'],
-#         "user_id": session['user_id']
-#     }
-
-#     Recipe.save(data)
-#     return redirect(f'/recipes/{user_id}')
-
-
-# @app.route('/edit_recipe/<int:recipe_id>', methods=['POST'])
-# def update_recipe(recipe_id):
-
-#     query = "UPDATE recipes SET name='%(name)s', date='%(date)s', thirty= '%{thirty}s', description='%(description)s', instructions='%(instructions)s', updated_at = NOW() WHERE id = %(id)s;"
-#     data = {
-#         'id': recipe_id,
-#         "name": request.form['name'],
-#         "date": request.form['date'],
-#         "thirty": request.form['thirty'],
-#         "description": request.form['description'],
-#         "instructions": request.form['instructions']
-#     }
-#     edited_recipe = Recipe.edit_recipe(query, data)
-
-#     # return render_template('test.html', id=r_id, data=data)
-#     return redirect(f"/show_recipe/{edited_recipe[0]['id']}")
-
-
-# @app.route('/show_recipe/<int:recipe_id>')
-# def view_recipe(recipe_id):
-
-#     query = "SELECT * FROM recipes WHERE id = %(id)s;"
-#     data = {'id': recipe_id}
-#     results = Recipe.get_all(query, data)
-
-#     return render_template("view_recipe.html", recipe=results[0])
-
-
-# @app.route('/show_this_date/<recipe_date>')
-# def recipes_on_this_date(recipe_date):
-
-#     query = "SELECT * FROM recipes WHERE date = %(date)s;"
-#     data = {'date': recipe_date}
-#     results = Recipe.get_all(query, data)
-
-#     return render_template("welcome.html", recipes=results)
-
-
-# @app.route('/edit_page/<int:recipe_id>')
-# def edit_recipe(recipe_id):
-
-#     query = "SELECT * FROM recipes WHERE id = %(id)s;"
-#     data = {'id': recipe_id}
-#     results = Recipe.get_all(query, data)
-
-#     return render_template("edit_recipe.html", recipe=results[0])
-
-
-# @app.route('/delete/<int:recipe_id>')
-# def remove_recipe(recipe_id):
-
-#     query = "DELETE FROM recipes WHERE id = %(id)s;"
-#     data = {'id': recipe_id}
-
-#     Recipe.remove_recipe(query, data)
-#     return redirect('/')
+#     if not bcrypt.check_password_hash(user_password[0].pass1, request.form['pass']):
+#         flash("Invalid Email/Password")
+#         return redirect('/')
+#     session.clear()
+#     session['user_name'] = user_in_db[0].first_name
+#     session['user_id'] = user_in_db[0].id
+#     return redirect(f"/recipes/{user_in_db[0].id}")
 
 
 # @app.route('/users')

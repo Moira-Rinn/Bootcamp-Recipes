@@ -2,20 +2,13 @@
 
 {% block body %}
   <div class="container">
-    <h1>The Taste Of Creativity!</h1>
+    <h1>Testing Area</h1>
     <div class="wrapper">
       <div>
-      <h1>{{data}}</h1>
-      <h1>{{data.id}}</h1>
-      <h1>{{data.name}}</h1>
-      <h1>{{data.date}}</h1>
-      <h1>{{data.thirty}}</h1>
-      <h1>{{data.instructions}}</h1>
-      <h1>{{data.description}}</h1>
+      <h1>{{session['user_name']}}</h1>
+      <h1>{{session['user_id']}}</h1>
+    </div>
+    </div>
 
-      <p>{{query}}</p>
-    </div>
-    </div>
-     
   </div>
 {% endblock %}

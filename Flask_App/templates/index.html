@@ -16,7 +16,6 @@
 
       <div class="register">
         <h6>Not a Member...</h6>
-
         <h1>Register Here:</h1>
 
         <form action="/create/user" method="POST">
@@ -29,6 +28,7 @@
         </form>
       </div>
     </div>
+
       {% with messages = get_flashed_messages() %}
         {% if messages %}
         <div class="error">
@@ -38,5 +38,6 @@
         </div>
         {%endif%}
       {% endwith %}
+      
   </div>
 {% endblock %}

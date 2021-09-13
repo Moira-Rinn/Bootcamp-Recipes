@@ -12,6 +12,8 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
+# METHOD TO GET DATA FROM USERS TABLE
+
     @classmethod
     def get_all(cls, query, data=None):
         users_from_db = connectToMySQL('recipes_db').query_db(query, data)
@@ -22,11 +24,15 @@ class User:
             return False
         return users
 
+# METHOD TO SAVE DATA TO  USERS TABLE
+
     @classmethod
     def save(cls, data=None):
         query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES(%(fname)s, %(lname)s, %(email)s, NOW(), NOW());"
         user_id = connectToMySQL('recipes_db').query_db(query, data)
         return user_id
+
+# METHOD TO VALIDATE REGISTRATION INFORMATION PROVIDED
 
     @staticmethod
     def registration_validation(data):
@@ -53,10 +59,14 @@ class User:
             is_valid = False
         return is_valid
 
+# METHOD TO REMOVE DATA FROM USERS TABLE (FUTURE FEATURE)
+
     # @classmethod
     # def remove_user(cls, query, data=None):
     #     user_id = connectToMySQL('users_schema').query_db(query, data)
     #     return user_id
+
+# METHOD TO EDIT DATA IN USERS TABLE (FUTURE FEATURE)
 
     # @classmethod
     # def edit_user(cls, query, data=None):

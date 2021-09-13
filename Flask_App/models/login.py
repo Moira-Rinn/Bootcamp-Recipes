@@ -7,10 +7,11 @@ class Login:
     def __init__(self, data):
         self.id = data['id']
         self.pass1 = data['pass1']
-        # self.pass2 = data['pass2']
         self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+
+# METHOD TO GET DATA FROM LOGINS TABLE
 
     @classmethod
     def get_all(cls, query, data=None):
@@ -22,11 +23,15 @@ class Login:
             return False
         return logins
 
+# METHOD TO SAVE DATA TO LOGINS TABLE
+
     @classmethod
     def save(cls, data=None):
         query = "INSERT INTO logins (pass1, user_id, created_at, updated_at) VALUES (%(pass1)s, %(user_id)s, NOW(), NOW());"
         login_id = connectToMySQL('recipes_db').query_db(query, data)
         return login_id
+
+# METHOD TO VALIDATE PASSWORD INFORMATION
 
     @staticmethod
     def password_validation(data):
@@ -39,13 +44,3 @@ class Login:
             flash("Password must be at least <span>6 characters</span> long.")
             is_valid = False
         return is_valid
-
-    # @classmethod
-    # def remove_login(cls, query, data=None):
-    #     login_id = connectToMySQL('logins_schema').query_db(query, data)
-    #     return login_id
-
-    # @classmethod
-    # def edit_login(cls, query, data=None):
-    #     login_id = connectToMySQL('logins_schema').query_db(query, data)
-    #     return login_id

@@ -12,10 +12,9 @@
     <title>Recipes</title>
   </head>
   <body>
-      <!-- <div class="header"> -->
         <nav>
           <div class="title-block">
-            <h2><a href="">Welcome {{session['user_name']}}!!</a></h2>
+            <h2><a href="/">Welcome {{session['user_name']}}!!</a></h2>
             <h6>Let's Make Something Delicious!</h6>
           </div>
           <div class="navbar">
@@ -34,7 +33,6 @@
             </form>
           </div>
         </nav>
-      <!-- </div> -->
       {% block body %}{% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
   </body>
