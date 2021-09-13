@@ -1,4 +1,5 @@
-from flask import Flask
+from Flask_App.controllers import recipes, logins, users
+from Flask_App import app
 
-app = Flask(__name__)
-app.secret_key = "NunYaBusiness"
+if __name__ == "__main__":
+    app.run(debug=True)

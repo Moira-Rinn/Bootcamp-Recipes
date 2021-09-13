@@ -2,31 +2,20 @@
 
 {% block body %}
   <div class="container">
+    <h1>The Taste Of Creativity!</h1>
     <div class="wrapper">
 
       <div class="login">
-            <h1>Login</h1>
-
-            <form action="/login" method="POST">
-
-              <input class="form-control" type="text" name="email" placeholder="User Name">
-              <input class="form-control" type="password" name="pass" placeholder="Password">
-              <input class="btn btn-dark" type="submit" value="Login">
-            </form>
+          <h1>Login</h1>
+          <form action="/login" method="POST">
+            <input class="form-control" type="text" name="email" placeholder="User Name">
+            <input class="form-control" type="password" name="pass" placeholder="Password">
+            <input class="btn btn-dark" type="submit" value="Login">
+          </form>
       </div>
 
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="error">
-          {% for message in messages %}
-            <p>{{message|safe}}</p>
-          {% endfor %}
-        </div>
-        {%endif%}
-      {% endwith %}
-
       <div class="register">
-        <h4>Not a Member...</h4>
+        <h6>Not a Member...</h6>
 
         <h1>Register Here:</h1>
 
@@ -40,5 +29,14 @@
         </form>
       </div>
     </div>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="error">
+          {% for message in messages %}
+            <p>{{message|safe}}</p>
+          {% endfor %}
+        </div>
+        {%endif%}
+      {% endwith %}
   </div>
 {% endblock %}

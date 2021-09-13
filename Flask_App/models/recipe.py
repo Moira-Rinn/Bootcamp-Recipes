@@ -1,35 +1,35 @@
 from Flask_App.config.mysql_connection import connectToMySQL
 
 
-class User:
+class Recipe:
     def __init__(self, data):
         self.id = data['id']
-        self.first_name = data['first_name']
-        self.last_name = data['last_name']
-        self.email = data['email']
+        self.name = data['name']
+        self.thirty = data['thirty']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.user_id = data['user_id']
 
     @classmethod
     def get_all(cls, query, data=None):
-        users_from_db = connectToMySQL('users_schema').query_db(query, data)
-        users = []
-        for u in users_from_db:
-            users.append(cls(u))
-        return users
+        recipes_from_db = connectToMySQL('recipes_db').query_db(query, data)
+        recipes = []
+        for r in recipes_from_db:
+            recipes.append(cls(r))
+        return recipes
 
     @classmethod
     def save(cls, data=None):
-        query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES(%(fname)s, %(lname)s, %(email)s, NOW(), NOW());"
-        user_id = connectToMySQL('users_schema').query_db(query, data)
-        return user_id
+        query = "INSERT INTO recipes (name, thirty, created_at, updated_at, user_id) VALUES(%(name)s, %(thirty)s, NOW(), NOW(), %(user_id)s);"
+        recipe_id = connectToMySQL('recipes_db').query_db(query, data)
+        return recipe_id
 
-    @classmethod
-    def remove_user(cls, query, data=None):
-        user_id = connectToMySQL('users_schema').query_db(query, data)
-        return user_id
+    # @classmethod
+    # def remove_recipe(cls, query, data=None):
+    #     recipe_id = connectToMySQL('recipes_schema').query_db(query, data)
+    #     return recipe_id
 
-    @classmethod
-    def edit_user(cls, query, data=None):
-        user_id = connectToMySQL('users_schema').query_db(query, data)
-        return user_id
+    # @classmethod
+    # def edit_recipe(cls, query, data=None):
+    #     recipe_id = connectToMySQL('recipes_schema').query_db(query, data)
+    #     return recipe_id
