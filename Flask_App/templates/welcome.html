@@ -2,30 +2,25 @@
 
 {% block body %}
 <div class="container">
-  <h1 class='recipeTitle'>My Cookbook</h1>
+  <h1 class='recipeTitle'>{{session['user_name']}}'s Cookbook</h1>
   <div class="wrapper">
     <table class="table table-dark table-striped table-hover">
       <thead>
         <tr>
-          <th scope="col">ID#</th>
           <th scope="col">Name</th>
           <th scope="col">Date</th>
           <th scope="col">Under Thirty Min</th>
-          <th scope="col">Created</th>
-          <th scope="col">Modified</th>
+
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
         {% for r in recipes %}
         <tr>
-          <th scope="row">{{r.id}}</th>
-          <td>{{r.name}}</td>
-          <td>{{r.date}}</td>
-          <td>{{r.thirty}}</td>
-          <td>{{r.created_at}}</td>
-          <td>{{r.updated_at}}</td>
-          <td><a href="/show_recipe/{{r.id}}">View</a> | <a href="/edit_page/{{r.id}}">Edit</a> | <a href="/delete/{{r.id}}">Delete</a></td>
+          <td><a href="/show_recipe/{{r.id}}">{{r.name}}</a></td>
+          <td><a href="/show_this_date/{{r.date}}">{{r.date}}</a></td>
+          <td><a href="/show_this_thirty/{{r.id}}">{{r.thirty}}</a></td>
+          <td><a href="/edit_page/{{r.id}}">Edit</a> | <a href="/delete/{{r.id}}">Delete</a></td>
         </tr>
         {% endfor %}
       </tbody>
@@ -33,7 +28,7 @@
   </div>
   <div>
     <a href="/add_new_recipe"><button class="btn btn-dark btn-outline-light">Add Recipe</button></a>
-    <a href="/logout"><button class="btn btn-dark btn-outline-light">Logout</button></a>
+    
   </div>
 </div>
 

@@ -9,38 +9,40 @@
         <h1 class='recipeTitle'>New Recipe:</h1>
 
         <form action="/add_recipe" method="POST">
-          <div class="formInput">
 
+          <div class="formInput">
             <div class="recipe">
-              <label for="name">~<3 Name:</label>
-              <input class="form-control" type="text" name="name">
-              <label  for="description">~<3 Description:</label>
-              <textarea class="form-control" name="description" id="desc" cols="70" rows="10"></textarea>
-              <label for="instructions">~<3 Instructions:</label>
-              <textarea class="form-control" name="instructions" id="desc" cols="70" rows="10"></textarea>
+              <label for="name">~<3 Name <3~</label>
+              <input class="form-control" type="text" name="name" value="Name">
+              <label  for="description">~<3 Description <3~</label>
+              <textarea class="form-control" name="description" id="description" cols="70" rows="10"></textarea>
+              <label for="instructions">~<3 Instructions <3~</label>
+              <textarea class="form-control" name="instructions" id="instructions" cols="70" rows="10"></textarea>
             </div>
 
             <div class="details">
+              <label for="date">~<3 Date <3~</label>
               <input class="form-control" type="date" name="date">
 
               <div class="underThirty">
-                <h4>Under 30 Minutes?</h4>
-                <div>
-                  <input type="radio" id="yes" name="thirty" value= "Yes">
-                  <label for="thirty">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="no" name="thirty" value= "No">
-                  <label for="thirty">No</label>
+                <h5 class="recipeTitle">Under 30 Minutes?</h5>
+                <div class="thirtyYesNo">
+                  <div>
+                    <input type="radio" id="yes" name="thirty" value= "Yes" checked>
+                    <label for="thirty">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="no" name="thirty" value= "No">
+                    <label for="thirty">No</label>
+                  </div>
                 </div>
               </div>
+              <input class="btn btn-dark btn-outline-light addRecipeBtn" type="submit" value="Add Recipe">
+              <a href="/"><button class="btn btn-dark btn-outline-light addRecipeBtn" type="button">Cancel</button></a>
 
             </div>
           </div>
-          <input class="btn btn-dark addRecipeBtn" type="submit" value="Add Recipe">
-
         </form>
-        <a href="/"><button class="btn btn-dark addRecipeBtn">Cancel</button></a>
       </div>
     </div>
   </div>

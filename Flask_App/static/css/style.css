@@ -7,44 +7,105 @@
 }
 
 body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
   height: 100vh;
-  text-align: center;
+  font-family: 'Nothing You Could Do', cursive;
   color: #fafafa;
   background-color: #000;
-  padding-top: 10vh;
+  overflow: hidden;
+  padding: 10vh;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+ 
+  width: 100%;
+  padding: 15px;
+}
+.title-block {
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px 15px;
+  margin: 5px 10px;
+  width: 30%;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  padding: 15px;
+}
+div.navbar a {
+  width: 12%;
+}
+div.navbar form {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 40px;
+}
+div.navbar form input {
+  max-width: 250px;
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+div.navbar form .btn {
+  max-width: 75px;
+  height: 30px;
+  padding: 0;
 }
 
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
   flex-direction: column;
-  width: 75%;
-  min-height: 55%;
-  font-family: 'Nothing You Could Do', cursive;
+  width: 100%;
   background: #000 url('../imgs/smcr-background.png') no-repeat center;
   border: 2px solid #fafafa;
   border-radius: 10px;
   padding: 20px;
 }
+.container h1 {
+  margin: 0 15px 15px 0;
+}
 
 .wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 95%;
-  height: 80%;
+  width: 100%;
   background-color: #222;
   border: 2px solid #fafafa;
   border-radius: 10px;
   opacity: 0.9;
-  padding: 10px 0 20px 0;
+  padding: 10px;
+  margin: 10px 15px;
+}
+
+div.addRecipe form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 .recipeTitle {
-  width: 65%;
+  width: 85%;
   text-decoration: underline;
-  padding: 15px;
+  padding: 15px 15px 0 15px;
 }
 
 p {
@@ -53,11 +114,9 @@ p {
 }
 
 .btn {
-  width: 60%;
-  border: 1px solid #fafafa;
-  margin: 5px 0 5px 0;
+  width: 250px;
+  margin: 5px;
 }
-
 .btn:hover {
   color: #fafafa;
   background-color: rgb(182, 108, 182);
@@ -88,61 +147,64 @@ p {
 .recipe {
   display: flex;
   align-items: flex-start;
-  /* justify-content: flex-end; */
   flex-direction: column;
   padding: 20px;
 }
 
 .details {
   display: flex;
-  align-items: center;
-  /* justify-content: center; */
+  align-items: flex-start;
   flex-direction: column;
-  padding: 45px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 }
 
 .underThirty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   border: 2px solid #fafafa;
   border-radius: 5px;
   padding: 10px;
-  margin-top: 35px;
+  margin: 40px 35px 75px 0;
 }
-
-.underThirty div {
+.underThirty h5 {
+  text-align: center;
+  font-size: 25px;
+  padding: 0;
+}
+.thirtyYesNo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 75%;
+}
+.thirtyYesNo div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
 }
 
 label {
-  width: 50%;
-  height: 25px;
   text-decoration: underline;
   font-size: 20px;
   font-weight: 700;
   color: #fafafa;
-  border-radius: 5px;
+  padding: 5px;
 }
 
-input, textarea, select {
-  width: 100%;
-  text-align: left;
-  color: #000;
-  margin: 9px;
+.buttons {
+  display: flex;
+  align-items: center;
+  width: 90%;
 }
 
-/* .addRecipeBtn {
-  width: 92%;
-} */
-
-#users {
+/* #users {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
+} */
 
 a {
   color: #fafafa;
@@ -182,15 +244,15 @@ td {border-right: none;}
   font-weight: 900;
 }
 
-#radio, #returning, #liked {
+/* #radio, #returning, #liked {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   border: 1px solid #fafafa;
   border-radius: 5px;
-}
+} */
 
-.usersInfo {
+/* .usersInfo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,4 +265,4 @@ td {border-right: none;}
   overflow: auto;
   padding: 15px;
   margin: 15px;
-}
+} */

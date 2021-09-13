@@ -28,11 +28,12 @@ class Recipe:
         return recipe_id
 
     @classmethod
-    def remove_recipe(cls, query, data=None):
+    def edit_recipe(cls, data=None):
+        query = "UPDATE recipes SET name=%(name)s, date=%(date)s, thirty= %{thirty}s, description=%(description)s, instructions=%(instructions)s, updated_at = NOW() WHERE id = ;"
         recipe_id = connectToMySQL('recipes_db').query_db(query, data)
         return recipe_id
 
     @classmethod
-    def edit_recipe(cls, query, data=None):
+    def remove_recipe(cls, query, data=None):
         recipe_id = connectToMySQL('recipes_db').query_db(query, data)
         return recipe_id

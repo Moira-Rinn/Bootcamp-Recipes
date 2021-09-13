@@ -22,6 +22,18 @@ def index():
     return render_template("index.html")
 
 
+@app.route('/recipes/<int:user_id>')
+def get_recpies(user_id):
+    if session == {}:
+        return redirect('/')
+
+    lQuery = "SELECT * FROM recipes WHERE user_id = %(user_id)s;"
+    lData = {'user_id': user_id}
+    user_recipes = Recipe.get_all(lQuery, lData)
+
+    return render_template('welcome.html', recipes=user_recipes)
+
+
 @app.route('/create/user', methods=['POST'])
 def create_user():
     uData = {
@@ -79,17 +91,6 @@ def login():
     session['user_id'] = user_in_db[0].id
     return redirect(f"/recipes/{user_in_db[0].id}")
 
-
-@app.route('/recipes/<int:user_id>')
-def get_recpies(user_id):
-    if session == {}:
-        return redirect('/')
-
-    lQuery = "SELECT * FROM recipes WHERE user_id = %(user_id)s;"
-    lData = {'user_id': user_id}
-    user_recipes = Recipe.get_all(lQuery, lData)
-
-    return render_template('welcome.html', recipes=user_recipes)
 
 # @app.route('/users')
 # def user():
