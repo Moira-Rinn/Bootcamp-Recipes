@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `recipes_db`.`users` (
   `first_name` VARCHAR(100) NULL,
   `last_name` VARCHAR(100) NULL,
   `email` VARCHAR(100) NULL,
+  `created_at` DATETIME NULL DEFAULT NOW(),
+  `updated_at` DATETIME NULL DEFAULT NOW(),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -52,7 +54,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `recipes_db`.`recipes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
-  `thirty` TINYINT NULL,
+  `thirty` VARCHAR(5) NULL,
+  `description` TEXT NULL,
+  `instructions` TEXT NULL,
   `created_at` DATETIME NULL DEFAULT NOW(),
   `updated_at` DATETIME NULL DEFAULT NOW(),
   `user_id` INT NOT NULL,

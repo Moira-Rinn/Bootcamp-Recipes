@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="container">
+    <div class="wrapper">
+      <div class="addRecipe"></div>
+        <div class="recipe">
+          <h1 class='recipeTitle'>Recipe: {{recipe.name}}</h1>
+          <p>{{recipe.description}}</p>
+          <p>{{recipe.instructions}}</p>
+        </div>
+        <div class="details">
+          <p>{{recipe.date}}</p>
+          <h4>Under Thirty Minutes?</h4>
+          <p>{{recipe.thirty}}</p>
+        </div>
+      </div>
+      <button class="btn btn-dark btn-outline-light"><a href="/">Back to Cookbook</a></button>
+      <button class="btn btn-dark btn-outline-light"><a href="/edit">Edit</a></button>
+      <button class="btn btn-dark btn-outline-light"><a href="/delete">Delete</a></button>
+    </div>
+  </div>
+
+{% endblock %}

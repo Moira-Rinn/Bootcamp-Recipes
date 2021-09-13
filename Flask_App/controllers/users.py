@@ -41,6 +41,7 @@ def create_user():
     if not User.registration_validation(request.form) or not Login.password_validation(request.form):
         return redirect('/')
     new_user = User.save(uData)
+    session.clear()
     session['user_name'] = request.form['fname']
     session['user_id'] = new_user
     pData['user_id'] = new_user
@@ -70,20 +71,18 @@ def login():
     lData = {'user_id': user_id}
     user_password = Login.get_all(lQuery, lData)
 
-    if not user_in_db or not user_password:
-        flash("Invalid Email/Password")
-        return redirect("/")
     if not bcrypt.check_password_hash(user_password[0].pass1, request.form['pass']):
         flash("Invalid Email/Password")
         return redirect('/')
-
+    session.clear()
     session['user_name'] = user_in_db[0].first_name
+    session['user_id'] = user_in_db[0].id
     return redirect(f"/recipes/{user_in_db[0].id}")
 
 
 @app.route('/recipes/<int:user_id>')
 def get_recpies(user_id):
-    if session.get('user_id') == False or session.get('user_name') == False:
+    if session == {}:
         return redirect('/')
 
     lQuery = "SELECT * FROM recipes WHERE user_id = %(user_id)s;"
