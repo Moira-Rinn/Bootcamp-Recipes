@@ -29,9 +29,10 @@ class Recipe:
 
     @classmethod
     def edit_recipe(cls, data=None):
-        query = "UPDATE recipes SET name=%(name)s, date=%(date)s, thirty= %{thirty}s, description=%(description)s, instructions=%(instructions)s, updated_at = NOW() WHERE id = ;"
-        recipe_id = connectToMySQL('recipes_db').query_db(query, data)
-        return recipe_id
+        query = "UPDATE recipes SET name = %(name)s, date = %(date)s, thirty = %(thirty)s, description = %(description)s, instructions = %(instructions)s, updated_at = NOW() WHERE id = %(id)s;"
+        # query = "UPDATE recipes SET name= 'Chicken', date= '2021-09-13', thirty= 'Yes', description= 'I like chicken soup.', instructions= 'cook on a stove.', updated_at = NOW() WHERE id = 1;"
+        edited_recipe = connectToMySQL('recipes_db').query_db(query, data)
+        return edited_recipe
 
     @classmethod
     def remove_recipe(cls, query, data=None):

@@ -85,6 +85,9 @@ div.navbar form .btn {
 }
 
 .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   background-color: #222;
   border: 2px solid #fafafa;
@@ -121,6 +124,8 @@ p {
   color: #fafafa;
   background-color: rgb(182, 108, 182);
 }
+
+
 
 .login, .register {
   display: flex;

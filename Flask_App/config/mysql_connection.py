@@ -23,15 +23,11 @@ class MySQLConnection:
                 if query.lower().find('insert') >= 0:
                     self.connection.commit()
                     return cursor.lastrowid
-                elif query.lower().find('update') >= 0:
-                    self.connection.commit()
-                    return cursor.lastrowid
                 elif query.lower().find('select') >= 0:
                     result = cursor.fetchall()
                     return result
                 else:
                     self.connection.commit()
-                    return cursor.lastrowid
             except Exception as e:
                 print('Something went wrong', e)
                 return data, e
