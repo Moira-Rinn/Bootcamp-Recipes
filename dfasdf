@@ -1,0 +1,41 @@
+[33mcommit 3e0a363210a44d7685fd059a89b96d07ae77e9c2[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Sacha Moira Rinn <Moira.Rinn@gmail.com>
+Date:   Mon Sep 13 18:58:43 2021 -0400
+
+    Comments added and code refactored in spots. Basic clean up.
+
+[33mcommit 9405d043ccb2505a96c458673c93215f0b55409e[m
+Author: Sacha Moira Rinn <Moira.Rinn@gmail.com>
+Date:   Mon Sep 13 17:25:52 2021 -0400
+
+    Finished with the exception of some clean up. FWIW one set of {} in the query messed up the edit. Lesson learned.
+
+[33mcommit dc627120181771377a38417aed99009d56f30d7a[m
+Author: Sacha Moira Rinn <Moira.Rinn@gmail.com>
+Date:   Mon Sep 13 14:36:53 2021 -0400
+
+    Edit not editing, reason undetermined.
+
+[33mcommit c94d48c4884a0ea2776f6b60811b8f3241406c52[m
+Author: Sacha Moira Rinn <Moira.Rinn@gmail.com>
+Date:   Mon Sep 13 03:17:25 2021 -0400
+
+    Most functionality completed. Edit needs work.
+
+[33mcommit d4f45a8c5a803dcc57821964bfd43c0dcc0a634e[m
+Author: Sacha Moira Rinn <Moira.Rinn@gmail.com>
+Date:   Sun Sep 12 22:37:37 2021 -0400
+
+    login functionality and recipe display version one finished.
+
+[33mcommit a7290457813e1412cd4db679e5253f0c10345373[m
+Author: Sacha Moira Rinn <Moira.Rinn@gmail.com>
+Date:   Sun Sep 12 01:31:36 2021 -0400
+
+    Some boiler plate code added, files cleaned up / setup..
+
+[33mcommit 669eb0ad3c9bb215d3ac368cb0cdbed1600b9b7e[m
+Author: Sacha Moira Rinn <Moira.Rinn@gmail.com>
+Date:   Sat Sep 11 19:55:17 2021 -0400
+
+    Initial commit. File setup.
